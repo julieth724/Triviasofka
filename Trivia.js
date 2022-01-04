@@ -41,6 +41,20 @@ class Trivia {
     this.rl.write(`-------------------------------------------------- \n`);
   }
 
+  static accionInicio() {
+    this.rl.question(
+      "Escribe 1 si deseas jugar o 2 si deseas ver puntuacion \n",
+      (respuestaIni) => {
+        const respuestaiInt = parseInt(respuestaIni);
+        if (respuestaiInt === 1) {
+          this.desordenarPreguntas();
+        } else {
+          this.rl.write("Esta es la puntiación de las ultimas jugadas");
+        }
+      }
+    );
+  }
+
   static escogerRespuesta(posiblesRespuestas) {
     this.rl.question(
       "Escribe solo el numero de la respuesta sin punto \n",

@@ -15,7 +15,7 @@ rl.question(
     Trivia.user = user;
     Trivia.listaPreguntas = LISTA_PREGUNTAS;
     Trivia.rl = rl;
-    Trivia.desordenarPreguntas();
+    Trivia.accionInicio();
   }
 );
 
