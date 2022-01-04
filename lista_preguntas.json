@@ -1,0 +1,37 @@
+[
+  {
+    "categoria": "Programación",
+    "Pregunta": "¿que significa la extencion .JSON?",
+    "respuesta": ["correcta", "incorrecta_1", "incorrecta_2", "incorrecta_3"]
+  },
+  {
+    "categoria": "Programación",
+    "Pregunta": "¿que significa la extencion .JSON2?",
+    "respuesta": [
+      "correcta",
+      "incorrecta_1.2",
+      "incorrecta_2.2",
+      "incorrecta_3.2"
+    ]
+  },
+  {
+    "categoria": "Programación",
+    "Pregunta": "¿que significa la extencion .JSON?3",
+    "respuesta": [
+      "correcta",
+      "incorrecta_1.3",
+      "incorrecta_2.3",
+      "incorrecta_3.3"
+    ]
+  },
+  {
+    "categoria": "Programación",
+    "Pregunta": "¿que significa la extencion .JSON4?",
+    "respuesta": [
+      "correcta",
+      "incorrecta_1.4",
+      "incorrecta_2.4",
+      "incorrecta_3.4"
+    ]
+  }
+]
