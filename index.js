@@ -1,6 +1,5 @@
 const LISTA_PREGUNTAS = require("./lista_preguntas.json");
 const readline = require("readline");
-const User = require("./User");
 const Trivia = require("./Trivia");
 
 const rl = readline.createInterface({
