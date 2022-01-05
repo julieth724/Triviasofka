@@ -1,26 +1,33 @@
 const User = require("./User");
 
 class Trivia {
-  static currentUser;
-  static listaPreguntas = [];
-  static pocisionActual = 0;
-  static puntos = 0;
-  static ultimosResultados = [];
-  static rl;
-
-  static desordenarPreguntas() {
+  constructor(listaPregunta, rl) {
+    this.listaPreguntas = listaPregunta;
+    this.rl = rl;
+    this.currentUser;
+    this.listaPreguntas = [];
+    this.pocisionActual = 0;
+    this.puntos = 0;
+    this.ultimosResultados = [];
+  }
+  currentUser;
+  listaPreguntas = [];
+  pocisionActual = 0;
+  puntos = 0;
+  ultimosResultados = [];
+  desordenarPreguntas() {
     this.listaPreguntas.sort(() => Math.random() - 0.5);
     this.rl.write(`------------------------------------ \n`);
     this.rl.write(`Hola ${this.currentUser.name} vamos a jugar \n`);
     this.rl.write(`------------------------------------ \n`);
     this.pintarPreguntaActual();
   }
-  static pintarPreguntaActual() {
+  pintarPreguntaActual() {
     const preguntaActual = this.listaPreguntas[this.pocisionActual];
     this.rl.write(`${preguntaActual.Pregunta}\n`);
     this.pintarRespuestas(preguntaActual.respuesta);
   }
-  static pintarRespuestas(listaRespuestas) {
+  pintarRespuestas(listaRespuestas) {
     const respuestasdesordenadas = [...listaRespuestas];
     respuestasdesordenadas.sort(() => Math.random() - 0.5);
     respuestasdesordenadas.forEach((item, i) => {
@@ -28,7 +35,7 @@ class Trivia {
     });
     this.escogerRespuesta(respuestasdesordenadas);
   }
-  static final() {
+  final() {
     this.ultimosResultados.push({
       name: this.currentUser.name,
       puntos: this.puntos,
@@ -48,19 +55,19 @@ class Trivia {
       }
     );
   }
-  static correcta() {
+  correcta() {
     ++this.puntos;
     this.rl.write(`-------------------------------------------------- \n`);
     this.rl.write(`Correcto tu puntuación actual es de ${this.puntos} \n`);
     this.rl.write(`-------------------------------------------------- \n`);
   }
-  static mal() {
+  mal() {
     this.rl.write(`-------------------------------------------------- \n`);
     this.rl.write(`Lo sentimos tu puntuación actual es de ${this.puntos} \n`);
     this.rl.write(`-------------------------------------------------- \n`);
   }
 
-  static accionInicio() {
+  accionInicio() {
     this.rl.question(
       "Escribe 1 si deseas jugar o 2 si deseas ver puntuacion \n",
       (respuestaIni) => {
@@ -86,7 +93,7 @@ class Trivia {
     );
   }
 
-  static escogerRespuesta(posiblesRespuestas) {
+  escogerRespuesta(posiblesRespuestas) {
     this.rl.question(
       "Escribe solo el numero de la respuesta sin punto \n",
       (respuesta) => {

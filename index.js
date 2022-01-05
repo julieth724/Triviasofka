@@ -8,9 +8,10 @@ const rl = readline.createInterface({
 });
 
 function initGame() {
-  Trivia.listaPreguntas = LISTA_PREGUNTAS;
-  Trivia.rl = rl;
-  Trivia.accionInicio();
+  const triviaGame = new Trivia();
+  triviaGame.listaPreguntas = LISTA_PREGUNTAS;
+  triviaGame.rl = rl;
+  triviaGame.accionInicio();
 }
 
 initGame();
