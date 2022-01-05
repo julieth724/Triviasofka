@@ -1,14 +1,17 @@
+const User = require("./User");
+
 class Trivia {
-  static user;
+  static currentUser;
   static listaPreguntas = [];
   static pocisionActual = 0;
   static puntos = 0;
+  static ultimosResultados = [];
   static rl;
 
   static desordenarPreguntas() {
     this.listaPreguntas.sort(() => Math.random() - 0.5);
     this.rl.write(`------------------------------------ \n`);
-    this.rl.write(`Hola ${this.user.name} vamos a jugar \n`);
+    this.rl.write(`Hola ${this.currentUser.name} vamos a jugar \n`);
     this.rl.write(`------------------------------------ \n`);
     this.pintarPreguntaActual();
   }
@@ -26,8 +29,24 @@ class Trivia {
     this.escogerRespuesta(respuestasdesordenadas);
   }
   static final() {
-    this.rl.write("gracias por jugar \n");
-    this.rl.close();
+    this.ultimosResultados.push({
+      name: this.currentUser.name,
+      puntos: this.puntos,
+    });
+    this.pocisionActual = 0;
+    this.puntos = 0;
+    this.rl.question(
+      "Precione 1 para volver a jugar 2 para terminar",
+      (respuestaIni) => {
+        const respuestaiInt = parseInt(respuestaIni);
+        if (respuestaiInt === 1) {
+          this.accionInicio();
+        } else {
+          this.rl.write("gracias por jugar \n");
+          this.rl.close();
+        }
+      }
+    );
   }
   static correcta() {
     ++this.puntos;
@@ -47,9 +66,21 @@ class Trivia {
       (respuestaIni) => {
         const respuestaiInt = parseInt(respuestaIni);
         if (respuestaiInt === 1) {
-          this.desordenarPreguntas();
+          this.rl.question(
+            "-------------------\nCual es tu nombre?\n-------------------\n",
+            (name) => {
+              const user = new User(name);
+              this.currentUser = user;
+              this.desordenarPreguntas();
+            }
+          );
         } else {
-          this.rl.write("Esta es la puntiación de las ultimas jugadas");
+          this.ultimosResultados.forEach((item) => {
+            this.rl.write(`Jugador: ${item.name} resultado: ${item.puntos} \n`);
+          });
+          this.rl.question("Precione cualquier tecla para volver", () => {
+            this.accionInicio();
+          });
         }
       }
     );

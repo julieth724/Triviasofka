@@ -1,7 +1,7 @@
 class User {
   constructor(name) {
     this.name = name;
-    this.mejorResultado = 0;
+    this.ultimoResultado = 0;
   }
 }
 

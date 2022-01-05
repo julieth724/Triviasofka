@@ -8,16 +8,13 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question(
-  "-------------------\nCual es tu nombre?\n-------------------\n",
-  (name) => {
-    const user = new User(name);
-    Trivia.user = user;
-    Trivia.listaPreguntas = LISTA_PREGUNTAS;
-    Trivia.rl = rl;
-    Trivia.accionInicio();
-  }
-);
+function initGame() {
+  Trivia.listaPreguntas = LISTA_PREGUNTAS;
+  Trivia.rl = rl;
+  Trivia.accionInicio();
+}
+
+initGame();
 
 rl.on("close", function () {
   console.log("\nBYE BYE !!!");
